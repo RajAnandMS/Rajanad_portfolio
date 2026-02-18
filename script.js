@@ -102,3 +102,48 @@ window.addEventListener('scroll', () => {
 
 // Form handling if needed in future
 console.log('Portfolio loaded successfully!');
+
+// Certificate Modal Functions
+const certificateData = {
+    java: {
+        title: 'Java Programming Certificate - ISOFT',
+        image: 'java-certificate.jpg',
+        downloadName: 'Java_Programming_Certificate_ISOFT.jpg'
+    }
+};
+
+function openCertificateModal(certType) {
+    const modal = document.getElementById('certificateModal');
+    const certInfo = certificateData[certType];
+    
+    if (certInfo) {
+        document.getElementById('certTitle').textContent = certInfo.title;
+        document.getElementById('certImage').src = certInfo.image;
+        document.getElementById('certDownloadBtn').href = certInfo.image;
+        document.getElementById('certDownloadBtn').download = certInfo.downloadName;
+        
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeCertificateModal() {
+    const modal = document.getElementById('certificateModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside the modal content
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('certificateModal');
+    if (event.target == modal) {
+        closeCertificateModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeCertificateModal();
+    }
+});
